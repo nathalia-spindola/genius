@@ -1,0 +1,70 @@
+:root {
+    --color-a: #2ecc71;
+    --color-b: #9b59b6;
+    --color-c: #e74c3c;
+    --color-d: #e67e22;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+}
+
+@keyframes piscadela {
+    50% {
+        background-color: white;
+    }
+}
+
+main {
+    border: 5px solid black;
+    height: 70vmin;
+    width: 70vmin;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main>div {
+    width: 50%;
+    flex: none;
+}
+
+main>div:nth-child(1) {
+    background-color: var(--color-a);
+}
+
+main>div:nth-child(2) {
+    background-color: var(--color-b);
+}
+
+main>div:nth-child(3) {
+    background-color: var(--color-c);
+}
+
+main>div:nth-child(4) {
+    background-color: var(--color-d);
+}
+
+main>div.animate {
+    /* background-color: white; */
+    /* usado no exemplo transition */
+    animation: piscadela .3s ease-in-out;
+    /* animation-name: piscadela;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out; */
+}
+
+div.pontuacao {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 5vmin;
+    background-color: #00000099;
+    color: #FFFFFF;
+}
