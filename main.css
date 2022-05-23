@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
 :root {
-    --color-a: #2ecc71;
-    --color-b: #9b59b6;
-    --color-c: #e74c3c;
-    --color-d: #e67e22;
+    --color-a: #01bba8;
+    --color-b: #3ac924;
+    --color-c: #e50e4b;
+    --color-d: #f8d31e;
+    --color-preto: hsl(60, 2%, 11%);
+    --color-fundo: #d8f7f9;
 }
 
 * {
@@ -14,6 +18,7 @@ body {
     padding: 0;
     margin: 0;
     border: 0 none;
+    background-color: var(--color-fundo);
 }
 
 @keyframes piscadela {
@@ -23,16 +28,39 @@ body {
 }
 
 main {
-    border: 5px solid black;
+    border: 10px solid var(--color-preto);
+    background-color: var(--color-preto);
     height: 70vmin;
     width: 70vmin;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 23px;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    justify-content: center;
 }
 
 main>div {
-    width: 50%;
+    width: 32vh;
     flex: none;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+.meio {
+    display: flex;
+    position: absolute;
+    height: 32vmin;
+    width: 32vmin;
+    border-radius: 20px;
+    right: 48%;
+    top: 48%;
+    transform: translate(50%, -50%);
+    background-color: var(--color-preto);
+    align-items: center;
+    justify-content: center;
 }
 
 main>div:nth-child(1) {
@@ -60,11 +88,15 @@ main>div.animate {
     animation-timing-function: ease-in-out; */
 }
 
-div.pontuacao {
+div.meio>div.pontuacao {
     position: absolute;
-    left: 0;
-    right: 0;
-    padding: 5vmin;
-    background-color: #00000099;
+    z-index: 1;
     color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28vmin;
+    width: 28vmin;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17vh;
 }
