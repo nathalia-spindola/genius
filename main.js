@@ -1,10 +1,21 @@
-const divPontuacao = document.querySelector("div.pontuacao")
+const divCentro = document.querySelector("div.centro")
 const divMain = document.querySelector("main")
 const divs = Array.from(divMain.querySelectorAll("div"))
+const btIniciar = document.querySelector(".bt-iniciar")
+const pnt = document.querySelector("div.pnt-num")
+const rcd = document.querySelector("div.rcd-num")
+
 
 let sequencia = []
 let animatingColors = false
 let currentColorPosition = 0
+
+
+
+btIniciar.addEventListener("click", ev => {
+    inicio()
+    pnt.innerHTML = "0"
+})
 
 divMain.addEventListener("click", ev => {
     if (animatingColors) {
@@ -15,8 +26,9 @@ divMain.addEventListener("click", ev => {
     const idxClickedElement = divs.indexOf(ev.target)
     
     if (idxClickedElement !== sequencia[currentColorPosition]) {
-        alert("perdeu playboy!")
-        inicio()
+        divCentro.classList.add("gameOver")
+        divCentro.innerHTML = "FIM DE</br>JOGO!"
+        btIniciar.innerHTML = "Iniciar"
         return
     }
 
@@ -25,7 +37,7 @@ divMain.addEventListener("click", ev => {
     
     if (currentColorPosition >= sequencia.length) {
         currentColorPosition = 0
-        setTimeout(() => turno(), 3000)
+        setTimeout(() => turno(), 2000)
     }
 })
 
@@ -46,20 +58,36 @@ function playAnimationColors() {
 }
 
 function inicio() {
+    btIniciar.innerHTML = "Memorize..."
     let cnt = 3
     sequencia = []
     currentColorPosition = 0
     let idx = setInterval(() => {
-        console.log(cnt--)
+        divCentro.classList.remove("gameOver")
+        //** centro: contagem */
+        divCentro.innerHTML = cnt--
         if(cnt <= 0) {
-            turno()
+            setTimeout(() => {
+                divCentro.classList.add("comecou")
+                divCentro.innerHTML = "Começou!"
+            }, 1000)
+            setTimeout(() => {
+                divCentro.classList.remove("comecou")
+                divCentro.innerHTML = sequencia.length
+            }, 2000)
+            setTimeout(() => turno(), 3000)
             clearInterval(idx)
         }
     }, 1000)
 }
 
 function turno() {
-    divPontuacao.innerHTML = sequencia.length
+    //** centro: pontuacao */
+    divCentro.innerHTML = sequencia.length
+    pnt.innerHTML = sequencia.length
+    if(rcd.innerHTML < sequencia.length){
+        rcd.innerHTML = sequencia.length
+    }
     const rnd = Math.round(Math.random() * 3)
     sequencia.push(rnd)
     playAnimationColors()
